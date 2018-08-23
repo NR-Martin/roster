@@ -1,6 +1,6 @@
 package io.rscale.training;
 
-
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import java.sql.SQLException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,11 +8,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+@EnableDiscoveryClient
 @Controller
 public class Controlller {
 
 	private AppInfo appInfo;
-	
+
 	@Autowired
 	public Controlller(AppInfo appInfo) {
 		this.appInfo = appInfo;
@@ -22,10 +23,10 @@ public class Controlller {
 	public String index() {
 		return "index";
 	}
-	
+
 	@RequestMapping("/details")
     public String details(Model model) throws SQLException {
-		
+
 		model.addAttribute("appId", appInfo.getAppId());
 		model.addAttribute("appName", appInfo.getAppName());
 		model.addAttribute("appUris", appInfo.getAppUris());
@@ -41,13 +42,13 @@ public class Controlller {
 		model.addAttribute("rosterB", appInfo.getRosterB());
 		model.addAttribute("rosterC", appInfo.getRosterC());
 		model.addAttribute("appVersion", appInfo.getAppVersion());
-		
+
         return "details";
     }
 
-	@RequestMapping("/kill") 
+	@RequestMapping("/kill")
 	public void kill() {
 		System.exit(1);
 	}
-	
+
 }
