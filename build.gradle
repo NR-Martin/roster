@@ -50,9 +50,3 @@ dependencyManagement {
 								mavenBom "io.pivotal.spring.cloud:spring-cloud-services-dependencies:2.0.1.RELEASE"
         }
 }
-
-dependencyManagement {
-    imports {
-        mavenBom "io.pivotal.spring.cloud:spring-cloud-services-dependencies:2.0.1.RELEASE"
-    }
-}
